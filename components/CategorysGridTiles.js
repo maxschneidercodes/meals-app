@@ -11,8 +11,10 @@ export default function CategoryGridTile({ title, color, onPress }) {
   return (
     <View style={[styles.gridItem, { backgroundColor: color }]}>
       <Pressable onPress={onPress}>
-        <View style={styles.container}>
-          <Text style={styles.title}>{title}</Text>
+        <View style={[styles.gridItem, { backgroundColor: color }]}>
+          <View style={styles.container}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
         </View>
       </Pressable>
     </View>

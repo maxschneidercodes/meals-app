@@ -1,9 +1,13 @@
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 
 export default function Meal(props) {
+  function handlePress() {
+    props.onPress(props.item.id);
+  }
+
   return (
     <View style={styles.container}>
-      <Pressable onPress={props.onPress}>
+      <Pressable onPress={handlePress}>
         <Image source={{ uri: props.item.imageUrl }} style={styles.image} />
         <View>
           <Text style={styles.title}>{props.item.title}</Text>

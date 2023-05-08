@@ -19,4 +19,19 @@ async function _retrieveData(key) {
   }
 }
 
-export { _storeData, _retrieveData };
+async function _deleteAllData() {
+  await AsyncStorage.setItem("ids", JSON.stringify([]));
+}
+
+async function _deleteData(key, value) {
+  try {
+    const dataArray = await _retrieveData(key);
+    const newArray = dataArray.filter((id) => id !== value);
+    await AsyncStorage.setItem(key, JSON.stringify(newArray));
+    return newArray;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { _storeData, _retrieveData, _deleteData, _deleteAllData };

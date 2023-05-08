@@ -10,7 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
 
-export default function IconButton({ icon, color, onPress }) {
+export default function IconButton({ name, onPress }) {
   const [selected, setSelected] = useState(false);
   const selectedAnim = useRef(new Animated.Value(1)).current;
 
@@ -39,7 +39,7 @@ export default function IconButton({ icon, color, onPress }) {
           }}
           style={styles.circle}
         >
-          <Text style={{ fontSize: 36, paddingRight: 20 }}>👍🏼</Text>
+          <Ionicons name={name} style={{ fontSize: 36, paddingRight: 20 }} />
         </TouchableOpacity>
       </Animated.View>
     </Pressable>

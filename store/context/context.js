@@ -1,5 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import { _storeData, _retrieveData } from "./localstorage";
+import {
+  _storeData,
+  _retrieveData,
+  _deleteData,
+  _deleteAllData,
+} from "./localstorage";
 
 export const FavContext = createContext({
   ids: [],
@@ -10,6 +15,7 @@ export const FavContext = createContext({
 export default function FavProvider({ children }) {
   const [ids, setIds] = useState([]);
 
+  console.log(ids);
   useEffect(() => {
     initIds();
   }, []);
@@ -21,7 +27,6 @@ export default function FavProvider({ children }) {
     } else {
       setIds(data);
     }
-    console.log(JSON.stringify(data));
   }
 
   async function addFavrite(id) {
@@ -29,9 +34,10 @@ export default function FavProvider({ children }) {
     await _storeData("ids", id);
   }
 
-  removeFavrite = (id) => {
-    setIds(ids.filter((id) => id !== id));
-  };
+  async function removeFavrite(id) {
+    const newData = await _deleteData("ids", id);
+    setIds(newData);
+  }
 
   return (
     <FavContext.Provider

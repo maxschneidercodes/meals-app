@@ -10,7 +10,11 @@ export default function MealScreen({ route, navigation }) {
   const mealIsFav = favContext.ids.includes(item.id);
 
   function handlePress() {
-    favContext.addFouvrite(item.id);
+    if (mealIsFav) {
+      favContext.removeFavourite(item.id);
+    } else {
+      favContext.addFouvrite(item.id);
+    }
   }
 
   useLayoutEffect(() => {
@@ -20,8 +24,9 @@ export default function MealScreen({ route, navigation }) {
           <IconButton
             title="Add"
             onPress={handlePress}
-            icon="star"
+            name={mealIsFav ? "star" : "star-outline"}
             color=""
+            size={20}
             style={styles.btn}
           />
         );

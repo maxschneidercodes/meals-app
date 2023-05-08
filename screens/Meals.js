@@ -1,13 +1,9 @@
 import { View, Text, FlatList } from "react-native";
 import { MEALS } from "../data/dummy";
 import Meal from "../components/Meal";
-import { useLayoutEffect } from "react";
-// import { useRoute } from "@react-navigation/native";
 
 export default function Meals({ route, navigation }) {
-  // const route = useRoute()
-  // const { item, id } = route.params;
-  const { item, id } = route.params;
+  const { item } = route.params;
 
   const displayedMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(item.id) >= 0
